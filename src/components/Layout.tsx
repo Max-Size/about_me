@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
+import { LiquidBackground } from './LiquidBackground'
+import { CustomCursor } from './CustomCursor'
+import { ScrollProgress } from './ScrollProgress'
 import { useTheme } from '../hooks/useTheme'
 
 export function Layout() {
@@ -20,14 +23,14 @@ export function Layout() {
   }, [location.pathname, location.hash])
 
   return (
-    <div className="min-h-svh text-ink">
+    <div className="relative min-h-svh text-ink">
+      <LiquidBackground />
+      <CustomCursor />
+      <ScrollProgress />
       <Header resolvedTheme={resolved} onToggleTheme={toggle} />
-      <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <main className="relative mx-auto max-w-6xl px-4 pb-16 pt-24 sm:px-6 sm:pt-28 lg:px-8">
         <Outlet />
       </main>
-      <footer className="mx-auto mt-8 max-w-6xl border-t border-border px-4 py-8 text-sm text-ink-muted sm:px-6 lg:px-8">
-        <p>© {new Date().getFullYear()} · Portfolio</p>
-      </footer>
     </div>
   )
 }

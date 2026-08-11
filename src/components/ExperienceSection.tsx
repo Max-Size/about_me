@@ -1,56 +1,46 @@
 import { experience } from '../data/portfolio'
 import { formatPeriod } from '../utils/format'
+import { SectionHeading } from './SectionHeading'
+import { Reveal } from './Reveal'
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="section-anchor py-16 sm:py-20">
-      <div className="mb-10">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-          Опыт работы
-        </p>
-        <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Где и над чем работал
-        </h2>
-      </div>
+    <section id="experience" className="section-anchor py-16 sm:py-24">
+      <SectionHeading index="03" eyebrow="опыт работы" title="Где и над чем работал" />
 
-      <div className="relative space-y-0">
-        {experience.map((item, index) => {
-          const isLast = index === experience.length - 1
-
-          return (
-            <article
-              key={item.id}
-              className="relative grid gap-5 pb-10 last:pb-0 md:grid-cols-[220px_1fr] md:gap-8 lg:grid-cols-[260px_1fr]"
-            >
-              {!isLast && (
-                <div
-                  className="timeline-line absolute left-5.75 top-14 bottom-0 hidden w-px md:block"
-                  aria-hidden="true"
-                />
-              )}
-
+      <div className="flex flex-col gap-8 sm:gap-10">
+        {experience.map((item, index) => (
+          <Reveal key={item.id} delay={index * 60}>
+            <article className="grid items-start gap-4 md:grid-cols-[220px_1fr] md:gap-8 lg:grid-cols-[260px_1fr]">
               <a
                 href={item.companyUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="relative z-10 flex items-start gap-3 rounded-xl p-1 transition hover:bg-accent-soft"
+                data-cursor="link"
+                className="glass glass-spot flex items-start gap-3 rounded-xl p-3 transition hover:-translate-y-0.5"
               >
                 <img
                   src={item.logo}
                   alt=""
-                  className="h-12 w-12 shrink-0 rounded-full border-2 border-surface bg-surface-elevated object-cover shadow-sm ring-2 ring-border"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-border"
                 />
                 <div className="min-w-0 pt-0.5">
-                  <h3 className="font-display text-lg font-bold text-ink hover:text-accent">
-                    {item.company}
-                  </h3>
-                  <p className="mt-0.5 text-sm text-ink-muted">
+                  <h3 className="font-display text-lg font-bold text-ink">{item.company}</h3>
+                  <p className="font-mono mt-0.5 text-xs text-ink-muted">
                     {formatPeriod(item.startDate, item.endDate)}
                   </p>
+                  {item.endDate === 'present' && (
+                    <span className="glass-lite mt-2 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-accent-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent-2" />
+                      сейчас
+                    </span>
+                  )}
                 </div>
               </a>
 
-              <div className="rounded-2xl border border-border bg-surface-elevated p-5 shadow-(--card-shadow) sm:p-6">
+              <div className="glass rounded-2xl p-5 sm:p-6">
                 <div className="space-y-6">
                   {item.achievements.map((block) => (
                     <div key={block.projectTitle}>
@@ -72,8 +62,8 @@ export function ExperienceSection() {
                 </div>
               </div>
             </article>
-          )
-        })}
+          </Reveal>
+        ))}
       </div>
     </section>
   )

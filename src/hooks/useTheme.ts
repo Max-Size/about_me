@@ -21,7 +21,7 @@ function applyTheme(mode: ThemeMode) {
 export function useTheme() {
   const [mode, setMode] = useState<ThemeMode>(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as ThemeMode | null
-    return stored ?? 'system'
+    return stored ?? 'dark'
   })
 
   useEffect(() => {

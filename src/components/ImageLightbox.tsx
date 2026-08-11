@@ -28,7 +28,7 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
 
   return createPortal(
     <div
-      className="fixed inset-0 z-100 flex h-dvh w-screen items-center justify-center bg-black/90 p-3 sm:p-6"
+      className="fixed inset-0 z-100 flex h-dvh w-screen items-center justify-center bg-black/90 p-3 backdrop-blur-md sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label="Просмотр изображения"
@@ -37,7 +37,8 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
       <button
         type="button"
         aria-label="Закрыть"
-        className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+        data-cursor="link"
+        className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
         onClick={onClose}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -55,7 +56,8 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
           <button
             type="button"
             aria-label="Предыдущее"
-            className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white transition hover:bg-white/20 sm:left-6"
+            data-cursor="link"
+            className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition hover:bg-white/20 sm:left-6"
             onClick={(e) => {
               e.stopPropagation()
               onChange((index - 1 + images.length) % images.length)
@@ -66,7 +68,8 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
           <button
             type="button"
             aria-label="Следующее"
-            className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white transition hover:bg-white/20 sm:right-6"
+            data-cursor="link"
+            className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition hover:bg-white/20 sm:right-6"
             onClick={(e) => {
               e.stopPropagation()
               onChange((index + 1) % images.length)

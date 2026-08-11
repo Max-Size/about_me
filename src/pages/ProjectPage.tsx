@@ -17,23 +17,24 @@ export function ProjectPage() {
     <div className="animate-fade-up pb-16">
       <Link
         to="/#projects"
-        className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-ink-muted transition hover:text-accent"
+        data-cursor="link"
+        className="font-mono mb-8 inline-flex items-center gap-2 text-sm font-medium text-ink-muted transition hover:text-accent"
       >
-        <span aria-hidden="true">←</span> К проектам
+        <span aria-hidden="true">←</span> Назад
       </Link>
 
-      <header className="flex flex-col gap-5 sm:flex-row sm:items-start">
+      <header className="glass flex flex-col gap-5 rounded-3xl p-6 sm:flex-row sm:items-start sm:p-8">
         <img
           src={project.icon}
           alt=""
-          className="h-28 w-28 shrink-0 rounded-[1.75rem] object-cover shadow-(--card-shadow-hover) ring-1 ring-border sm:h-32 sm:w-32"
+          className="h-28 w-28 shrink-0 rounded-[1.75rem] object-cover ring-1 ring-border sm:h-32 sm:w-32"
         />
         <div className="min-w-0 flex-1">
           <h1 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             {project.title}
           </h1>
           <p className="mt-2 text-base text-ink-muted sm:text-lg">{project.shortDescription}</p>
-          <p className="mt-3 text-sm font-semibold text-accent">Роль: {project.role}</p>
+          <p className="font-mono mt-3 text-sm font-semibold text-accent">роль: {project.role}</p>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {project.chips.map((chip) => (
               <Chip key={chip} label={chip} />
@@ -48,23 +49,26 @@ export function ProjectPage() {
             <button
               key={src}
               type="button"
+              data-cursor="link"
               onClick={() => setLightboxIndex(index)}
-              className="group relative shrink-0 overflow-hidden rounded-2xl border border-border bg-surface-elevated focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="glass group relative shrink-0 overflow-hidden rounded-2xl p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <img
                 src={src}
                 alt={`Скриншот ${project.title} ${index + 1}`}
-                className="h-72 w-40 object-cover transition duration-300 group-hover:scale-105 sm:h-80 sm:w-44"
+                loading="lazy"
+                decoding="async"
+                className="h-72 w-40 rounded-xl object-cover transition duration-300 group-hover:scale-105 sm:h-80 sm:w-44"
               />
-              <span className="pointer-events-none absolute inset-0 bg-black/0 transition group-hover:bg-black/10" />
+              <span className="pointer-events-none absolute inset-1.5 rounded-xl bg-black/0 transition group-hover:bg-black/10" />
             </button>
           ))}
         </div>
-        <p className="mt-2 text-xs text-ink-muted">Нажмите на изображение, чтобы открыть на весь экран</p>
+        <p className="font-mono mt-2 text-xs text-ink-dim">// нажмите на изображение, чтобы открыть на весь экран</p>
       </section>
 
       <section className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-        <div className="rounded-2xl border border-border bg-surface-elevated p-6 shadow-(--card-shadow) sm:p-8">
+        <div className="glass rounded-3xl p-6 sm:p-8">
           <h2 className="font-display text-xl font-bold text-ink">Описание</h2>
           <div className="mt-4 space-y-4 text-[1.02rem] leading-relaxed text-ink-muted">
             {project.fullDescription.split('\n\n').map((paragraph) => (
@@ -86,25 +90,16 @@ export function ProjectPage() {
         </div>
 
         <aside className="space-y-6">
-          <div className="rounded-2xl border border-border bg-surface-elevated p-6 shadow-(--card-shadow)">
+          <div className="glass rounded-3xl p-6">
             <h2 className="font-display text-lg font-bold text-ink">Технологии</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-border px-2.5 py-1 text-xs font-medium text-ink"
+                  className="font-mono rounded-md border border-border px-2.5 py-1 text-xs font-medium text-ink"
                 >
                   {tech}
                 </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-border bg-surface-elevated p-6 shadow-(--card-shadow)">
-            <h2 className="font-display text-lg font-bold text-ink">Метки</h2>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {project.chips.map((chip) => (
-                <Chip key={chip} label={chip} />
               ))}
             </div>
           </div>

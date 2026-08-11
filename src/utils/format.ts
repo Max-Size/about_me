@@ -1,3 +1,11 @@
+export function yearsSince(dateIso: string, now = new Date()): number {
+  const [year, month] = dateIso.split('-').map(Number)
+  let years = now.getFullYear() - year
+  const monthDiff = now.getMonth() + 1 - (month ?? 1)
+  if (monthDiff < 0) years -= 1
+  return Math.max(0, years)
+}
+
 export function calcAge(birthDateIso: string, now = new Date()): number {
   const [year, month, day] = birthDateIso.split('-').map(Number)
   let age = now.getFullYear() - year
