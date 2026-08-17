@@ -1,14 +1,16 @@
-import { projects } from '../data/portfolio'
+import { getProjects } from '../data/portfolio'
+import { useLocale } from '../i18n/context'
 import { SectionHeading } from './SectionHeading'
 import { ProjectCard } from './ProjectCard'
 import { Reveal } from './Reveal'
 
 export function ProjectsSection() {
-  const [featured, ...rest] = projects
+  const { locale, t } = useLocale()
+  const [featured, ...rest] = getProjects(locale)
 
   return (
     <section id="projects" className="section-anchor pt-16 sm:pt-20">
-      <SectionHeading title="Проекты" hint="клик по карточке — полный кейс" />
+      <SectionHeading title={t.projects.title} hint={t.projects.hint} />
 
       <Reveal>
         <ProjectCard project={featured} featured />

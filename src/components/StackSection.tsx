@@ -1,4 +1,5 @@
 import { skillGroups } from '../data/portfolio'
+import { useLocale } from '../i18n/context'
 import { SectionHeading } from './SectionHeading'
 import { Reveal } from './Reveal'
 
@@ -12,9 +13,11 @@ const groupIcons: Record<string, string> = {
 }
 
 export function StackSection() {
+  const { t } = useLocale()
+
   return (
     <section id="stack" className="section-anchor pt-16 sm:pt-20">
-      <SectionHeading title="Стек" hint="сгруппировано по направлениям" />
+      <SectionHeading title={t.stack.title} hint={t.stack.hint} />
 
       <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group, index) => (

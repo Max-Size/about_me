@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom'
-import { education, experience, projects } from '../data/portfolio'
+import { getEducation, getExperience } from '../data/portfolio'
 import { formatPeriod } from '../utils/format'
+import { useLocale } from '../i18n/context'
 import { SectionHeading } from './SectionHeading'
 import { Reveal } from './Reveal'
 
-function projectIdByTitle(title: string): string | undefined {
-  return projects.find((p) => p.title === title)?.id
-}
-
 export function ExperienceSection() {
+  const { locale, t } = useLocale()
+  const experience = getExperience(locale)
+  const education = getEducation(locale)
+
   return (
     <section id="experience" className="section-anchor pt-16 sm:pt-20">
-      <SectionHeading title="Опыт и образование" />
+      <SectionHeading title={t.experience.title} />
 
       <div className="grid gap-3.5 lg:grid-cols-[1.5fr_1fr]">
         <Reveal className="h-full">
@@ -42,24 +43,19 @@ export function ExperienceSection() {
                         item.endDate === 'present' ? 'text-accent' : 'text-ink-dim'
                       }`}
                     >
-                      {formatPeriod(item.startDate, item.endDate)}
+                      {formatPeriod(item.startDate, item.endDate, locale)}
                     </span>
                   </div>
                   <ul className="mt-2.5 flex flex-wrap gap-1.5">
                     {item.achievements.map((block) => {
-                      const projectId = projectIdByTitle(block.projectTitle)
                       const chipClass =
                         'font-mono inline-block rounded-full border border-border px-3 py-1 text-[11px] text-ink-muted transition hover:border-border-strong hover:text-accent'
 
                       return (
-                        <li key={block.projectTitle} className="w-fit">
-                          {projectId ? (
-                            <Link to={`/projects/${projectId}`} className={chipClass}>
-                              {block.projectTitle}
-                            </Link>
-                          ) : (
-                            <span className={chipClass}>{block.projectTitle}</span>
-                          )}
+                        <li key={block.projectId} className="w-fit">
+                          <Link to={`/projects/${block.projectId}`} className={chipClass}>
+                            {block.projectTitle}
+                          </Link>
                         </li>
                       )
                     })}
@@ -78,10 +74,10 @@ export function ExperienceSection() {
                 <p className="mt-2 text-[13px] leading-relaxed text-ink-muted">
                   {item.field}
                   <br />
-                  {item.program}, {formatPeriod(item.startDate, item.endDate)}
+                  {item.program}, {formatPeriod(item.startDate, item.endDate, locale)}
                 </p>
                 <span className="font-mono mt-auto inline-block w-fit rounded-full border border-border-strong px-3.5 py-1.5 pt-1.5 text-[10.5px] text-accent">
-                  высшее · software engineering
+                  {t.experience.degreeBadge}
                 </span>
               </div>
             ))}

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useLocale } from '../i18n/context'
 
 /** Каркасный икосаэдр на canvas 2D: вращение drag'ом (мышь / палец) с инерцией. */
 
@@ -31,6 +32,7 @@ const FRICTION = 0.94
 const AUTO_SPIN = 0.0035
 
 export function IcosahedronCard() {
+  const { t } = useLocale()
   const cellRef = useRef<HTMLDivElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
@@ -212,7 +214,7 @@ export function IcosahedronCard() {
     >
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 block h-full w-full" />
       <span className="font-mono pointer-events-none absolute inset-x-0 bottom-4 text-center text-[10.5px] text-ink-dim">
-        потяни
+        {t.hero.drag}
       </span>
     </div>
   )

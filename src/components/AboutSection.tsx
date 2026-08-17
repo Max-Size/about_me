@@ -1,22 +1,25 @@
-import { profile } from '../data/portfolio'
-import { calcAge } from '../utils/format'
+import { getProfile } from '../data/portfolio'
+import { calcAge, ageUnit } from '../utils/format'
+import { useLocale } from '../i18n/context'
 import { ContactIcon } from './ContactIcons'
 import { SectionHeading } from './SectionHeading'
 import { Reveal } from './Reveal'
 
-const contacts = [
-  { key: 'telegram' as const, label: 'Telegram', href: profile.contacts.telegram },
-  { key: 'gmail' as const, label: 'Gmail', href: profile.contacts.gmail },
-  { key: 'hh' as const, label: 'HeadHunter', href: profile.contacts.hh },
-  { key: 'linkedin' as const, label: 'LinkedIn', href: profile.contacts.linkedin },
-]
-
 export function AboutSection() {
+  const { locale, t } = useLocale()
+  const profile = getProfile(locale)
   const age = calcAge(profile.birthDate)
+
+  const contacts = [
+    { key: 'telegram' as const, label: 'Telegram', href: profile.contacts.telegram },
+    { key: 'gmail' as const, label: 'Gmail', href: profile.contacts.gmail },
+    { key: 'hh' as const, label: 'HeadHunter', href: profile.contacts.hh },
+    { key: 'linkedin' as const, label: 'LinkedIn', href: profile.contacts.linkedin },
+  ]
 
   return (
     <section id="about" className="section-anchor pt-16 sm:pt-20">
-      <SectionHeading title="О себе" />
+      <SectionHeading title={t.about.title} />
 
       <Reveal>
         <div className="cell grid gap-8 p-7 sm:p-8 lg:grid-cols-[1fr_260px]">
@@ -28,7 +31,7 @@ export function AboutSection() {
 
           <div className="flex flex-col gap-4 lg:border-l lg:border-border lg:pl-8">
             <p className="font-mono text-[11.5px] uppercase tracking-[0.14em] text-ink-dim">
-              {age} {ageWord(age)} · {profile.specialization}
+              {age} {ageUnit(age, locale)} · {profile.specialization}
             </p>
             <div className="flex flex-col gap-2">
               {contacts.map(({ key, label, href }) => (
@@ -52,13 +55,4 @@ export function AboutSection() {
       </Reveal>
     </section>
   )
-}
-
-function ageWord(age: number): string {
-  const mod10 = age % 10
-  const mod100 = age % 100
-  if (mod100 >= 11 && mod100 <= 14) return 'лет'
-  if (mod10 === 1) return 'год'
-  if (mod10 >= 2 && mod10 <= 4) return 'года'
-  return 'лет'
 }

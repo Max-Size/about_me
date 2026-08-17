@@ -1,14 +1,14 @@
 import type { ReactElement } from 'react'
 import type { ProjectLink, ProjectLinkKind } from '../data/portfolio'
+import { useLocale } from '../i18n/context'
 
-const defaultLabels: Record<ProjectLinkKind, string> = {
+const brandLabels: Record<Exclude<ProjectLinkKind, 'web'>, string> = {
   appstore: 'App Store',
   googleplay: 'Google Play',
   rustore: 'RuStore',
   github: 'GitHub',
   pubdev: 'pub.dev',
   demo: 'Live demo',
-  web: 'Сайт',
 }
 
 const icons: Record<ProjectLinkKind, (props: { className?: string }) => ReactElement> = {
@@ -26,6 +26,7 @@ interface ProjectLinksProps {
 }
 
 export function ProjectLinks({ links }: ProjectLinksProps) {
+  const { t } = useLocale()
   if (links.length === 0) return null
 
   return (
@@ -41,7 +42,7 @@ export function ProjectLinks({ links }: ProjectLinksProps) {
             className="group inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-2 text-[12.5px] font-medium text-ink-muted transition hover:border-border-strong hover:text-accent"
           >
             <Icon className="h-3.5 w-3.5" />
-            {link.label ?? defaultLabels[link.kind]}
+            {link.label ?? (link.kind === 'web' ? t.links.web : brandLabels[link.kind])}
             <span className="text-ink-dim transition group-hover:translate-x-0.5 group-hover:text-accent">
               ↗
             </span>

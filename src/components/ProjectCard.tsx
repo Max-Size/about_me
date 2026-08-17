@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { Project } from '../data/portfolio'
+import { useLocale } from '../i18n/context'
 import { Chip } from './Chip'
 
 interface ProjectCardProps {
@@ -9,6 +10,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
+  const { t } = useLocale()
+
   if (featured) {
     return (
       <Link
@@ -26,7 +29,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-surface-elevated max-md:bg-linear-to-t max-md:from-surface-elevated max-md:via-transparent max-md:to-transparent" />
         </div>
         <div className="flex flex-col gap-3.5 p-7 sm:p-8">
-          <Chip label={`флагманский кейс · ${project.role.toLowerCase()}`} accent className="w-fit" />
+          <Chip label={`${t.projects.featured} · ${project.role.toLowerCase()}`} accent className="w-fit" />
           <div className="flex items-center gap-3.5">
             <img
               src={project.icon}
@@ -41,7 +44,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           <div className="metric-divider mt-auto flex items-center justify-between gap-3 pt-3.5 text-[13.5px] text-accent">
             <span>{project.highlight}</span>
             <span className="whitespace-nowrap text-ink-dim transition group-hover:translate-x-1 group-hover:text-accent">
-              открыть кейс →
+              {t.projects.openCase}
             </span>
           </div>
         </div>

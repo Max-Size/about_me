@@ -1,27 +1,36 @@
 import { useMemo, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getProjectById } from '../data/portfolio'
 import { Chip } from '../components/Chip'
 import { ImageLightbox } from '../components/ImageLightbox'
 import { ProjectLinks } from '../components/ProjectLinks'
+import { useLocale } from '../i18n/context'
 
 export function ProjectPage() {
   const { id } = useParams<{ id: string }>()
-  const project = useMemo(() => (id ? getProjectById(id) : undefined), [id])
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { locale, t } = useLocale()
+  const project = useMemo(() => (id ? getProjectById(id, locale) : undefined), [id, locale])
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   if (!project) {
-    return <Navigate to="/" replace />
+    return <Navigate to={{ pathname: '/', search: location.search }} replace />
   }
 
   return (
     <div className="animate-fade-up pb-8">
-      <Link
-        to="/#projects"
-        className="font-mono mb-6 inline-flex items-center gap-2 text-[13px] text-ink-muted transition hover:text-accent"
+      <button
+        type="button"
+        onClick={() => {
+          const idx = window.history.state?.idx
+          if (typeof idx === 'number' && idx > 0) navigate(-1)
+          else navigate({ pathname: '/', search: location.search })
+        }}
+        className="font-mono mb-6 inline-flex cursor-pointer items-center gap-2 text-[13px] text-ink-muted transition hover:text-accent"
       >
-        <span aria-hidden="true">←</span> все проекты
-      </Link>
+        <span aria-hidden="true">←</span> {t.projectPage.allProjects}
+      </button>
 
       {/* обложка + шапка кейса */}
       <header className="cell cell-solid overflow-hidden">
@@ -55,7 +64,7 @@ export function ProjectPage() {
 
       {/* изображения */}
       <section className="cell mt-3.5 p-7 sm:p-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">Изображения</h2>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">{t.projectPage.images}</h2>
         <div className="-mx-2 mt-4 flex gap-3 overflow-x-auto px-2 pb-2">
           {project.images.map((src, index) => (
             <button
@@ -66,7 +75,7 @@ export function ProjectPage() {
             >
               <img
                 src={src}
-                alt={`Скриншот ${project.title} ${index + 1}`}
+                alt={`${t.projectPage.screenshotAlt} ${project.title} ${index + 1}`}
                 loading="lazy"
                 decoding="async"
                 className="h-64 w-36 object-cover transition duration-300 group-hover:scale-105 sm:h-72 sm:w-40"
@@ -75,21 +84,21 @@ export function ProjectPage() {
           ))}
         </div>
         <p className="font-mono mt-2 text-[10.5px] text-ink-dim">
-          // нажмите на изображение, чтобы открыть на весь экран
+          {t.projectPage.clickToExpand}
         </p>
       </section>
 
       <div className="mt-3.5 grid gap-3.5 lg:grid-cols-[1.4fr_1fr]">
         {/* описание + достижения */}
         <div className="cell p-7 sm:p-8">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">Описание</h2>
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">{t.projectPage.description}</h2>
           <div className="mt-4 space-y-4 text-sm leading-relaxed text-ink-muted sm:text-[15px]">
             {project.fullDescription.split('\n\n').map((paragraph) => (
               <p key={paragraph.slice(0, 32)}>{paragraph}</p>
             ))}
           </div>
 
-          <h2 className="font-mono mt-8 text-[11px] uppercase tracking-[0.14em] text-ink-dim">Что сделал</h2>
+          <h2 className="font-mono mt-8 text-[11px] uppercase tracking-[0.14em] text-ink-dim">{t.projectPage.whatIDid}</h2>
           <ul className="mt-4 space-y-2.5">
             {project.achievements.map((item) => (
               <li
@@ -104,7 +113,7 @@ export function ProjectPage() {
 
         {/* технологии */}
         <aside className="cell h-fit p-7">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">Технологии</h2>
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">{t.projectPage.tech}</h2>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {project.technologies.map((tech) => (
               <span

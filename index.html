@@ -13,6 +13,25 @@
       rel="stylesheet"
     />
     <title>Максим Селезнев · Software Engineer</title>
+    <script>
+      (function () {
+        var key = 'cutaway-locale'
+        var stored = null
+        try {
+          stored = localStorage.getItem(key)
+        } catch (e) {}
+        var query = new URLSearchParams(location.search).get('lang')
+        var locale
+        if (query === 'ru' || query === 'en') {
+          locale = query
+        } else if (stored === 'ru' || stored === 'en') {
+          locale = stored
+        } else {
+          locale = 'ru'
+        }
+        document.documentElement.lang = locale
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

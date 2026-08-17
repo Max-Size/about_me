@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { useLocale } from '../i18n/context'
 
 interface ImageLightboxProps {
   images: string[]
@@ -9,6 +10,8 @@ interface ImageLightboxProps {
 }
 
 export function ImageLightbox({ images, index, onClose, onChange }: ImageLightboxProps) {
+  const { t } = useLocale()
+
   useEffect(() => {
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -31,12 +34,12 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
       className="fixed inset-0 z-100 flex h-dvh w-screen items-center justify-center bg-black/90 p-3 backdrop-blur-md sm:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label="Просмотр изображения"
+      aria-label={t.lightbox.view}
       onClick={onClose}
     >
       <button
         type="button"
-        aria-label="Закрыть"
+        aria-label={t.lightbox.close}
         className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
         onClick={onClose}
       >
@@ -54,7 +57,7 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
         <>
           <button
             type="button"
-            aria-label="Предыдущее"
+            aria-label={t.lightbox.prev}
             className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition hover:bg-white/20 sm:left-6"
             onClick={(e) => {
               e.stopPropagation()
@@ -65,7 +68,7 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
           </button>
           <button
             type="button"
-            aria-label="Следующее"
+            aria-label={t.lightbox.next}
             className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition hover:bg-white/20 sm:right-6"
             onClick={(e) => {
               e.stopPropagation()
