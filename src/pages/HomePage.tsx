@@ -1,17 +1,19 @@
 import { Hero } from '../components/Hero'
-import { AboutSection } from '../components/AboutSection'
 import { ProjectsSection } from '../components/ProjectsSection'
+import { AboutSection } from '../components/AboutSection'
+import { StackSection } from '../components/StackSection'
 import { ExperienceSection } from '../components/ExperienceSection'
-import { EducationSection } from '../components/EducationSection'
+import { ContactSection } from '../components/ContactSection'
 
 export function HomePage() {
   return (
     <>
       <Hero />
-      <AboutSection />
       <ProjectsSection />
+      <AboutSection />
+      <StackSection />
       <ExperienceSection />
-      <EducationSection />
+      <ContactSection />
     </>
   )
 }

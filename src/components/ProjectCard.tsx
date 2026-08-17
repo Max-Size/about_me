@@ -1,71 +1,88 @@
 import { Link } from 'react-router-dom'
 import type { Project } from '../data/portfolio'
 import { Chip } from './Chip'
-import { useTilt } from '../hooks/useTilt'
 
 interface ProjectCardProps {
   project: Project
-  index: number
+  /** широкая горизонтальная карточка для флагманского кейса */
+  featured?: boolean
 }
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
-  const { ref, onMouseMove, onMouseLeave } = useTilt<HTMLAnchorElement>({ max: 4 })
+export function ProjectCard({ project, featured = false }: ProjectCardProps) {
+  if (featured) {
+    return (
+      <Link
+        to={`/projects/${project.id}`}
+        className="cell cell-solid cell-lift group grid overflow-hidden md:grid-cols-[1.15fr_1fr]"
+      >
+        <div className="relative min-h-[210px] md:min-h-[300px]">
+          <img
+            src={project.cover}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-surface-elevated max-md:bg-linear-to-t max-md:from-surface-elevated max-md:via-transparent max-md:to-transparent" />
+        </div>
+        <div className="flex flex-col gap-3.5 p-7 sm:p-8">
+          <Chip label={`флагманский кейс · ${project.role.toLowerCase()}`} accent className="w-fit" />
+          <div className="flex items-center gap-3.5">
+            <img
+              src={project.icon}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-11 w-11 rounded-xl border border-border object-cover"
+            />
+            <h3 className="font-display text-xl font-bold sm:text-2xl">{project.title}</h3>
+          </div>
+          <p className="text-sm leading-relaxed text-ink-muted">{project.shortDescription}</p>
+          <div className="metric-divider mt-auto flex items-center justify-between gap-3 pt-3.5 text-[13.5px] text-accent">
+            <span>{project.highlight}</span>
+            <span className="whitespace-nowrap text-ink-dim transition group-hover:translate-x-1 group-hover:text-accent">
+              открыть кейс →
+            </span>
+          </div>
+        </div>
+      </Link>
+    )
+  }
 
   return (
     <Link
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
       to={`/projects/${project.id}`}
-      data-cursor="link"
-      className="glass glass-spot glass-tilt group relative flex h-full flex-col overflow-hidden rounded-2xl"
+      className="cell cell-solid cell-lift group flex h-full flex-col overflow-hidden"
     >
-      <span className="font-mono absolute right-4 top-4 z-10 text-xs font-semibold text-white/70 mix-blend-difference">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-
-      <div className="relative aspect-16/10 overflow-hidden">
+      <div className="relative aspect-video overflow-hidden">
         <img
           src={project.cover}
           alt=""
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-          style={{ transform: 'translateZ(10px)' }}
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/5 to-transparent" />
       </div>
-
-      <div className="relative flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-start gap-3">
+      <div className="flex flex-1 flex-col gap-2.5 p-5 sm:p-6">
+        <div className="flex items-center gap-2.5">
           <img
             src={project.icon}
             alt=""
             loading="lazy"
             decoding="async"
-            className="h-11 w-11 shrink-0 rounded-xl object-cover ring-1 ring-border"
+            className="h-[34px] w-[34px] rounded-[9px] border border-border object-cover"
           />
-          <div>
-            <h3 className="font-display text-lg font-bold text-ink transition group-hover:text-accent">
-              {project.title}
-            </h3>
-            <p className="mt-1 text-sm leading-relaxed text-ink-muted">{project.shortDescription}</p>
-          </div>
+          <h3 className="font-display text-[15px] font-bold">{project.title}</h3>
+          <span className="font-mono ml-auto whitespace-nowrap text-[10px] text-accent">
+            {project.chips.includes('Solo dev') ? 'solo' : 'team'}
+          </span>
         </div>
-
-        <div className="mt-auto flex flex-wrap gap-1.5 pt-1">
-          {project.chips.slice(0, 6).map((chip) => (
-            <Chip key={chip} label={chip} />
-          ))}
+        <p className="text-[13px] leading-relaxed text-ink-muted">{project.shortDescription}</p>
+        <div className="metric-divider mt-auto flex items-center justify-between gap-2.5 pt-3 text-[12.5px] text-accent">
+          <span>{project.highlight}</span>
+          <span className="text-ink-dim transition group-hover:translate-x-1 group-hover:text-accent">→</span>
         </div>
       </div>
-
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-5 right-5 z-10 flex h-9 w-9 -translate-x-2 items-center justify-center rounded-full bg-accent text-white opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-[#06050a]"
-      >
-        →
-      </span>
     </Link>
   )
 }

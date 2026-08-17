@@ -37,7 +37,6 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
       <button
         type="button"
         aria-label="Закрыть"
-        data-cursor="link"
         className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
         onClick={onClose}
       >
@@ -56,7 +55,6 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
           <button
             type="button"
             aria-label="Предыдущее"
-            data-cursor="link"
             className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition hover:bg-white/20 sm:left-6"
             onClick={(e) => {
               e.stopPropagation()
@@ -68,7 +66,6 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
           <button
             type="button"
             aria-label="Следующее"
-            data-cursor="link"
             className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition hover:bg-white/20 sm:right-6"
             onClick={(e) => {
               e.stopPropagation()

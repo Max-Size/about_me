@@ -1,13 +1,10 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
-import { LiquidBackground } from './LiquidBackground'
-import { CustomCursor } from './CustomCursor'
+import { FluidBackground } from './FluidBackground'
 import { ScrollProgress } from './ScrollProgress'
-import { useTheme } from '../hooks/useTheme'
 
 export function Layout() {
-  const { resolved, toggle } = useTheme()
   const location = useLocation()
 
   useEffect(() => {
@@ -23,14 +20,19 @@ export function Layout() {
   }, [location.pathname, location.hash])
 
   return (
-    <div className="relative min-h-svh text-ink">
-      <LiquidBackground />
-      <CustomCursor />
+    <>
+      <FluidBackground />
       <ScrollProgress />
-      <Header resolvedTheme={resolved} onToggleTheme={toggle} />
-      <main className="relative mx-auto max-w-6xl px-4 pb-16 pt-24 sm:px-6 sm:pt-28 lg:px-8">
-        <Outlet />
-      </main>
-    </div>
+      <Header />
+      <div className="relative z-1 min-h-svh text-ink">
+        <main className="relative mx-auto max-w-[1120px] px-4 pb-12 pt-24 sm:px-6 sm:pt-28">
+          <Outlet />
+        </main>
+        <footer className="font-mono relative mx-auto flex max-w-[1120px] flex-wrap justify-between gap-3 px-4 pb-8 text-[11px] text-ink-dim sm:px-6">
+          <span>© {new Date().getFullYear()} максим селезнев</span>
+          <span>bento + metaballs — без единой библиотеки</span>
+        </footer>
+      </div>
+    </>
   )
 }

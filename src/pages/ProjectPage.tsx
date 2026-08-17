@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { getProjectById } from '../data/portfolio'
 import { Chip } from '../components/Chip'
 import { ImageLightbox } from '../components/ImageLightbox'
+import { ProjectLinks } from '../components/ProjectLinks'
 
 export function ProjectPage() {
   const { id } = useParams<{ id: string }>()
@@ -14,74 +15,86 @@ export function ProjectPage() {
   }
 
   return (
-    <div className="animate-fade-up pb-16">
+    <div className="animate-fade-up pb-8">
       <Link
         to="/#projects"
-        data-cursor="link"
-        className="font-mono mb-8 inline-flex items-center gap-2 text-sm font-medium text-ink-muted transition hover:text-accent"
+        className="font-mono mb-6 inline-flex items-center gap-2 text-[13px] text-ink-muted transition hover:text-accent"
       >
-        <span aria-hidden="true">←</span> Назад
+        <span aria-hidden="true">←</span> все проекты
       </Link>
 
-      <header className="glass flex flex-col gap-5 rounded-3xl p-6 sm:flex-row sm:items-start sm:p-8">
-        <img
-          src={project.icon}
-          alt=""
-          className="h-28 w-28 shrink-0 rounded-[1.75rem] object-cover ring-1 ring-border sm:h-32 sm:w-32"
-        />
-        <div className="min-w-0 flex-1">
-          <h1 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            {project.title}
-          </h1>
-          <p className="mt-2 text-base text-ink-muted sm:text-lg">{project.shortDescription}</p>
-          <p className="font-mono mt-3 text-sm font-semibold text-accent">роль: {project.role}</p>
+      {/* обложка + шапка кейса */}
+      <header className="cell cell-solid overflow-hidden">
+        <div className="relative aspect-video max-h-[340px] w-full sm:aspect-[16/6.5]">
+          <img src={project.cover} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-linear-to-t from-surface-elevated via-transparent to-transparent" />
+        </div>
+        <div className="relative -mt-9 px-6 pb-7 sm:px-10 sm:pb-9">
+          <div className="flex items-center gap-4">
+            <img
+              src={project.icon}
+              alt=""
+              className="h-[58px] w-[58px] shrink-0 rounded-2xl border border-border-strong bg-surface-elevated object-cover"
+            />
+            <div className="min-w-0">
+              <h1 className="font-display text-xl font-black sm:text-[26px]">{project.title}</h1>
+              <p className="font-mono mt-1 text-[11px] text-accent">{project.role.toLowerCase()}</p>
+            </div>
+          </div>
+          <p className="mt-5 max-w-[62ch] text-sm leading-relaxed text-ink-muted sm:text-[15px]">
+            {project.shortDescription}
+          </p>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {project.chips.map((chip) => (
               <Chip key={chip} label={chip} />
             ))}
           </div>
+          <ProjectLinks links={project.links ?? []} />
         </div>
       </header>
 
-      <section className="mt-10">
-        <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
+      {/* изображения */}
+      <section className="cell mt-3.5 p-7 sm:p-8">
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">Изображения</h2>
+        <div className="-mx-2 mt-4 flex gap-3 overflow-x-auto px-2 pb-2">
           {project.images.map((src, index) => (
             <button
               key={src}
               type="button"
-              data-cursor="link"
               onClick={() => setLightboxIndex(index)}
-              className="glass group relative shrink-0 overflow-hidden rounded-2xl p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="group shrink-0 overflow-hidden rounded-xl border border-border transition hover:border-border-strong focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <img
                 src={src}
                 alt={`Скриншот ${project.title} ${index + 1}`}
                 loading="lazy"
                 decoding="async"
-                className="h-72 w-40 rounded-xl object-cover transition duration-300 group-hover:scale-105 sm:h-80 sm:w-44"
+                className="h-64 w-36 object-cover transition duration-300 group-hover:scale-105 sm:h-72 sm:w-40"
               />
-              <span className="pointer-events-none absolute inset-1.5 rounded-xl bg-black/0 transition group-hover:bg-black/10" />
             </button>
           ))}
         </div>
-        <p className="font-mono mt-2 text-xs text-ink-dim">// нажмите на изображение, чтобы открыть на весь экран</p>
+        <p className="font-mono mt-2 text-[10.5px] text-ink-dim">
+          // нажмите на изображение, чтобы открыть на весь экран
+        </p>
       </section>
 
-      <section className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-        <div className="glass rounded-3xl p-6 sm:p-8">
-          <h2 className="font-display text-xl font-bold text-ink">Описание</h2>
-          <div className="mt-4 space-y-4 text-[1.02rem] leading-relaxed text-ink-muted">
+      <div className="mt-3.5 grid gap-3.5 lg:grid-cols-[1.4fr_1fr]">
+        {/* описание + достижения */}
+        <div className="cell p-7 sm:p-8">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">Описание</h2>
+          <div className="mt-4 space-y-4 text-sm leading-relaxed text-ink-muted sm:text-[15px]">
             {project.fullDescription.split('\n\n').map((paragraph) => (
               <p key={paragraph.slice(0, 32)}>{paragraph}</p>
             ))}
           </div>
 
-          <h2 className="font-display mt-8 text-xl font-bold text-ink">Достижения</h2>
-          <ul className="mt-4 space-y-3">
+          <h2 className="font-mono mt-8 text-[11px] uppercase tracking-[0.14em] text-ink-dim">Что сделал</h2>
+          <ul className="mt-4 space-y-2.5">
             {project.achievements.map((item) => (
               <li
                 key={item}
-                className="relative pl-4 text-sm leading-relaxed text-ink-muted before:absolute before:left-0 before:top-[0.55em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent sm:text-base"
+                className="relative pl-5 text-[13.5px] leading-relaxed text-ink before:absolute before:left-0 before:content-['→'] before:text-accent-2"
               >
                 {item}
               </li>
@@ -89,22 +102,21 @@ export function ProjectPage() {
           </ul>
         </div>
 
-        <aside className="space-y-6">
-          <div className="glass rounded-3xl p-6">
-            <h2 className="font-display text-lg font-bold text-ink">Технологии</h2>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="font-mono rounded-md border border-border px-2.5 py-1 text-xs font-medium text-ink"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+        {/* технологии */}
+        <aside className="cell h-fit p-7">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">Технологии</h2>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="font-mono rounded-full border border-border px-3 py-1.5 text-[11px] text-ink-muted transition hover:border-border-strong hover:text-ink"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
         </aside>
-      </section>
+      </div>
 
       {lightboxIndex !== null && (
         <ImageLightbox

@@ -16,8 +16,12 @@ function IconGmail({ className = '' }: { className?: string }) {
 
 function IconHH({ className = '' }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M2 3h5.2v7.2H11V3h5.2v18H11v-7.8H7.2V21H2V3zm15.4 0H22v7.05c0 2.55-1.35 4.05-3.6 4.05-.75 0-1.5-.15-2.1-.45l.9-3.15c.3.15.6.3.9.3.6 0 .9-.45.9-1.2V3z" />
+    <svg className={className} viewBox="0 0 400 400" fill="currentColor" aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M400 200C400 310.457 310.457 400 200 400C89.5431 400 0 310.457 0 200C0 89.5431 89.5431 0 200 0C310.457 0 400 89.5431 400 200ZM160.34 161.226C146.98 161.226 136.74 166.526 130.84 176.486V127.126H99.8802V262.406H130.84V214.846C130.84 203.766 133.16 196.666 136.64 192.486C140.02 188.326 144.76 186.706 149.9 186.706C154.44 186.706 158.02 188.126 160.54 190.686C163.06 193.346 164.5 197.406 164.5 203.086V262.286H195.46V197.126C195.46 186.046 192.18 177.046 185.98 170.786C179.88 164.546 171.08 161.226 160.34 161.226ZM299.58 170.886C293.38 164.626 284.58 161.226 273.84 161.226C260.48 161.226 250.24 166.526 244.34 176.486V127.126H213.38V262.406H244.34V214.846C244.34 203.766 246.66 196.666 250.14 192.486C253.52 188.326 258.26 186.706 263.4 186.706C267.94 186.706 271.52 188.126 274.04 190.686C276.56 193.346 278 197.406 278 203.086V262.286H308.96V197.126C308.98 186.046 305.68 177.046 299.58 170.886Z"
+      />
     </svg>
   )
 }
@@ -30,9 +34,16 @@ function IconLinkedIn({ className = '' }: { className?: string }) {
   )
 }
 
-export const contactIcons = {
+const icons = {
   telegram: IconTelegram,
   gmail: IconGmail,
   hh: IconHH,
   linkedin: IconLinkedIn,
+}
+
+export type ContactIconName = keyof typeof icons
+
+export function ContactIcon({ name, className }: { name: ContactIconName; className?: string }) {
+  const Icon = icons[name]
+  return <Icon className={className} />
 }

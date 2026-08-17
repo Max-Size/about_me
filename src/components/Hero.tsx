@@ -1,103 +1,107 @@
-import { projects, experience, skillGroups } from '../data/portfolio'
+import { experience, profile, projects } from '../data/portfolio'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { yearsSince } from '../utils/format'
-import { TerminalCard } from './TerminalCard'
+import { IcosahedronCard } from './IcosahedronCard'
 
-const roles = ['Software Engineer', 'Mobile Developer', 'Full-stack Builder', 'Backend на FastAPI']
-
-const badges = [
-  { label: 'Flutter', delay: '0s' },
-  { label: 'React', delay: '0.3s' },
-  { label: 'FastAPI', delay: '0.6s' },
-  { label: 'PostgreSQL', delay: '0.9s' },
+const roles = [
+  'Software Engineer',
+  'Mobile Flutter Developer',
+  'Full-stack Builder',
+  'Python Backend Developer',
 ]
 
-const stats = [
-  { value: `${yearsSince(experience[experience.length - 1]?.startDate ?? '2021')}+`, label: 'года в разработке' },
-  { value: `${projects.length}`, label: 'проектов доведено до релиза' },
-  { value: `${skillGroups.reduce((acc, g) => acc + g.skills.length, 0)}+`, label: 'технологий в стеке' },
-]
+const earliestStart = experience.map((e) => e.startDate).sort()[0] ?? '2023-06'
 
 export function Hero() {
   const role = useTypewriter(roles)
+  const years = yearsSince(earliestStart)
+
+  const stats = [
+    { value: `${years}+`, label: 'года коммерческой разработки' },
+    { value: '−60%', label: 'времени code review после AI-pipeline' },
+    { value: '×3↑', label: 'ускорение приложения АГАТ.РФ' },
+    { value: `${projects.length}/${projects.length}`, label: 'проекта доведены до продакшена' },
+  ]
 
   return (
-    <section className="relative overflow-hidden pb-20 pt-6 sm:pb-28 sm:pt-10">
-      <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-        <div className="animate-fade-up min-w-0">
-          <h1 className="font-display max-w-2xl text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-[4rem]">
-            <span className="text-gradient">Строю продукты,</span>
-            <br />
-            не только код.
-          </h1>
-
-          <div className="font-mono mt-6 flex h-7 items-center gap-2 text-base text-ink-muted sm:text-lg">
-            <span className="text-accent">$</span>
-            <span>whoami</span>
-            <span className="text-ink"> → {role}</span>
-            <span className="animate-caret inline-block h-4 w-[2px] bg-accent" />
-          </div>
-
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
-            Собираю мобильные приложения, веб-сервисы и бэкенд с нуля — от архитектуры до релиза в
-            сторы. Думаю метриками и юнит-экономикой, а не только кодом.
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="#projects"
-              data-cursor="link"
-              className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_var(--accent)] dark:text-[#06050a]"
-            >
-              Смотреть проекты
-              <span className="transition group-hover:translate-x-1">→</span>
-            </a>
-            <a
-              href="#about"
-              data-cursor="link"
-              className="glass-lite glass-spot inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5"
-            >
-              Обо мне
-            </a>
-          </div>
-
-          <div className="mt-12 grid max-w-lg grid-cols-3 gap-4">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="font-display text-2xl font-extrabold text-ink sm:text-3xl">{stat.value}</p>
-                <p className="mt-1 text-xs leading-snug text-ink-dim">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="animate-fade-up-delay-2 flex min-w-0 flex-col items-center gap-5">
-          <TerminalCard />
-          <div className="flex max-w-md flex-wrap justify-center gap-2">
-            {badges.map((badge) => (
-              <span
-                key={badge.label}
-                className="font-mono glass-lite animate-float rounded-full px-3 py-1.5 text-xs font-medium text-ink"
-                style={{ animationDelay: badge.delay }}
-              >
-                {badge.label}
-              </span>
-            ))}
-          </div>
+    <section className="animate-fade-up grid grid-cols-2 gap-3 md:grid-cols-4">
+      {/* интро */}
+      <div
+        className="cell col-span-2 row-span-2 flex min-h-[380px] flex-col justify-center p-7 sm:p-8"
+        style={{
+          background:
+            'radial-gradient(130% 120% at 0% 100%, rgba(255, 122, 24, 0.13) 0%, rgba(255, 244, 224, 0.025) 55%)',
+        }}
+      >
+        <p className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-dim">
+          software engineer · {years}+ года
+        </p>
+        <h1 className="font-display mt-4 text-[26px] font-black leading-[1.14] sm:text-[32px] lg:text-[40px]">
+          Строю <span className="text-accent">продукты</span>,<br />
+          не только код.
+        </h1>
+        <p className="mt-4 max-w-[46ch] text-sm leading-relaxed text-ink-muted">
+          Мобильные приложения, веб-сервисы и бэкенд с нуля — от архитектуры до релиза в сторы.
+          Думаю метриками и юнит-экономикой.
+        </p>
+        {/* фиксированная высота — текст ниже не прыгает при печати */}
+        <p className="font-mono mt-5 h-5 overflow-hidden text-[12.5px] text-ink-dim">
+          $ whoami → <span className="font-medium text-ink">{role}</span>
+          <span className="animate-caret ml-0.5 inline-block h-[13px] w-[7px] translate-y-0.5 bg-accent" />
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2.5">
+          <a
+            href="#projects"
+            className="rounded-full bg-linear-to-r from-accent-2 to-accent px-5 py-2.5 text-[13.5px] font-semibold text-accent-ink transition hover:-translate-y-0.5"
+          >
+            Смотреть проекты
+          </a>
+          <a
+            href="#contact"
+            className="rounded-full border border-border-strong px-5 py-2.5 text-[13.5px] font-semibold text-ink transition hover:-translate-y-0.5"
+          >
+            Связаться
+          </a>
         </div>
       </div>
 
-      <a
-        href="#about"
-        data-cursor="link"
-        aria-label="Прокрутить вниз"
-        className="mx-auto mt-16 hidden w-fit items-center gap-2 text-xs font-medium text-ink-dim transition hover:text-accent sm:flex"
-      >
-        <span className="font-mono">scroll</span>
-        <span className="flex h-8 w-5 items-start justify-center rounded-full border border-border p-1">
-          <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-accent" />
-        </span>
-      </a>
+      {/* фото */}
+      <div className="cell relative col-span-1 row-span-2 min-h-[300px] overflow-hidden p-0 md:min-h-0">
+        <img
+          src={profile.photo}
+          alt={profile.name}
+          className="absolute inset-0 h-full w-full object-cover saturate-[0.88] contrast-[1.04]"
+        />
+        <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-surface via-surface/75 to-transparent px-5 pb-4 pt-11">
+          <p className="text-[13px] font-semibold">{profile.name}</p>
+          <p className="font-mono mt-1 text-[11px] text-accent">● open to work</p>
+        </div>
+      </div>
+
+      {/* икосаэдр — справа от аватара, та же высота */}
+      <IcosahedronCard />
+
+      {/* статистика — на новой строке, «годы» первыми */}
+      {stats.map((stat) => (
+        <div key={stat.label} className="cell col-span-1 flex min-h-[128px] flex-col justify-end gap-2 p-5 sm:p-6">
+          <p className="font-display text-[24px] font-bold sm:text-[26px]">
+            <StatValue value={stat.value} />
+          </p>
+          <p className="text-[11.5px] leading-snug text-ink-muted">{stat.label}</p>
+        </div>
+      ))}
     </section>
+  )
+}
+
+/** Подсвечивает знаки (+, %, ↑, /) янтарным. */
+function StatValue({ value }: { value: string }) {
+  const match = value.match(/^(−?×?\d+)(.*)$/)
+  if (!match) return <>{value}</>
+  return (
+    <>
+      {match[1]}
+      <span className="text-accent">{match[2]}</span>
+    </>
   )
 }
