@@ -31,7 +31,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
           nextParams.set(LANG_QUERY_KEY, next)
           return nextParams
         },
-        { replace: true },
+        { replace: true, preventScrollReset: true },
       )
     },
     [setSearchParams],

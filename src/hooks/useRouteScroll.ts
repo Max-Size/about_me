@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 
 const positions = new Map<string, number>()
@@ -11,13 +11,17 @@ function scrollToY(top: number) {
 
 function activateKey(key: string) {
   if (activeKey === key) return
+  const y = window.scrollY
+  if (activeKey) positions.set(activeKey, y)
   pendingRestoreY = positions.get(key)
+  if (pendingRestoreY == null) positions.set(key, y)
   activeKey = key
 }
 
 export function useRouteScroll() {
   const location = useLocation()
   const navigationType = useNavigationType()
+  const prevPathnameRef = useRef(location.pathname)
 
   activateKey(location.key)
 
@@ -42,6 +46,8 @@ export function useRouteScroll() {
   useLayoutEffect(() => {
     const saved = pendingRestoreY
     let lastY = window.scrollY
+    const pathnameChanged = prevPathnameRef.current !== location.pathname
+    prevPathnameRef.current = location.pathname
 
     const restore = () => {
       if (navigationType === 'POP' && saved != null) {
@@ -50,6 +56,9 @@ export function useRouteScroll() {
         lastY = window.scrollY
         return
       }
+
+      // Query-only REPLACE (language toggle) must keep the current scroll.
+      if (!pathnameChanged && navigationType === 'REPLACE') return
 
       if (location.hash) {
         const id = location.hash.slice(1)
@@ -73,5 +82,5 @@ export function useRouteScroll() {
       cancelAnimationFrame(frame)
       retries.forEach(clearTimeout)
     }
-  }, [location.hash, location.key, navigationType])
+  }, [location.hash, location.key, location.pathname, navigationType])
 }
