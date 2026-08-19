@@ -83,8 +83,11 @@ export function ImageLightbox({ images, index, onClose, onChange }: ImageLightbo
       <img
         src={images[index]}
         alt=""
-        className="max-h-[min(92dvh,100%)] max-w-[min(96vw,100%)] rounded-lg object-contain shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
+        className={`max-h-[min(92dvh,100%)] max-w-[min(96vw,100%)] rounded-lg object-contain shadow-2xl ${images.length > 1 ? 'cursor-pointer' : ''}`}
+        onClick={(e) => {
+          e.stopPropagation()
+          if (images.length > 1) onChange((index + 1) % images.length)
+        }}
       />
 
       {images.length > 1 && (
