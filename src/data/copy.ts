@@ -16,7 +16,7 @@ export interface ProjectCopy {
 
 export interface ExperienceCopy {
   company: string
-  achievements: Array<{ projectId: string; points: string[] }>
+  achievements: Array<{ projectId: string }>
 }
 
 export interface EducationCopy {
@@ -101,21 +101,21 @@ export const projectCopy: Record<Locale, Record<string, ProjectCopy>> = {
         'Интегрировал аналитику просмотра авто, что увеличило уровень продаж',
       ],
     },
-    'agat-crm': {
-      title: 'Agat.CRM',
-      shortDescription:
-        'Внутреннее приложение для менеджеров: автоматизация проведения тест-драйвов.',
-      fullDescription: `Agat.CRM — внутреннее мобильное приложение для менеджеров автодилерской сети. Цель — автоматизировать процесс проведения тест-драйвов: от записи клиента до фиксации результата.
+//     'agat-crm': {
+//       title: 'Agat.CRM',
+//       shortDescription:
+//         'Внутреннее приложение для менеджеров: автоматизация проведения тест-драйвов.',
+//       fullDescription: `Agat.CRM — внутреннее мобильное приложение для менеджеров автодилерской сети. Цель — автоматизировать процесс проведения тест-драйвов: от записи клиента до фиксации результата.
 
-Приложение собрано с нуля: проектирование архитектуры, планирование и приоритизация задач, интеграция системы логирования ошибок и сбоев.`,
-      role: 'Flutter-разработчик',
-      highlight: 'Архитектура и логирование — с нуля',
-      achievements: [
-        'Реализовал приложение с нуля и спроектировал архитектуру',
-        'Планировал и приоритизировал задачи разработки',
-        'Интегрировал систему логирования ошибок и сбоев',
-      ],
-    },
+// Приложение собрано с нуля: проектирование архитектуры, планирование и приоритизация задач, интеграция системы логирования ошибок и сбоев.`,
+//       role: 'Flutter-разработчик',
+//       highlight: 'Архитектура и логирование — с нуля',
+//       achievements: [
+//         'Реализовал приложение с нуля и спроектировал архитектуру',
+//         'Планировал и приоритизировал задачи разработки',
+//         'Интегрировал систему логирования ошибок и сбоев',
+//       ],
+//     },
     'penta-iot': {
       title: 'Penta IoT',
       shortDescription:
@@ -229,20 +229,20 @@ Focus on stability and speed: critical bugfixes under tight deadlines, network-r
         'Integrated vehicle-view analytics, which increased sales',
       ],
     },
-    'agat-crm': {
-      title: 'Agat.CRM',
-      shortDescription: 'Internal app for managers: automating test drives.',
-      fullDescription: `Agat.CRM is an internal mobile app for managers in a car-dealer network. The goal is to automate test drives: from booking a client to recording the result.
+//     'agat-crm': {
+//       title: 'Agat.CRM',
+//       shortDescription: 'Internal app for managers: automating test drives.',
+//       fullDescription: `Agat.CRM is an internal mobile app for managers in a car-dealer network. The goal is to automate test drives: from booking a client to recording the result.
 
-Built from scratch: architecture, planning and prioritization, and an error/crash logging system.`,
-      role: 'Flutter developer',
-      highlight: 'Architecture and logging — from scratch',
-      achievements: [
-        'Shipped the app from scratch and designed the architecture',
-        'Planned and prioritized development work',
-        'Integrated error and crash logging',
-      ],
-    },
+// Built from scratch: architecture, planning and prioritization, and an error/crash logging system.`,
+//       role: 'Flutter developer',
+//       highlight: 'Architecture and logging — from scratch',
+//       achievements: [
+//         'Shipped the app from scratch and designed the architecture',
+//         'Planned and prioritized development work',
+//         'Integrated error and crash logging',
+//       ],
+//     },
     'penta-iot': {
       title: 'Penta IoT',
       shortDescription:
@@ -307,43 +307,15 @@ export const experienceCopy: Record<Locale, Record<string, ExperienceCopy>> = {
     agat: {
       company: 'ГК АГАТ',
       achievements: [
-        {
-          projectId: 'gandiva',
-          points: [
-            'Спроектировал и реализовал приложение с нуля: архитектура, модули, CI/CD и code-style',
-            'Выступал техлидом мобильного направления: декомпозиция, code review, менторинг',
-            'Внедрил AI-assisted review pipeline — время code review сократилось более чем на 60%',
-            'Реализовал OAuth 2.0/OIDC, deep links, push, crash reporting и централизованное логирование',
-          ],
-        },
-        {
-          projectId: 'agat-rf',
-          points: [
-            'Оптимизировал сетевые запросы и ускорил приложение в 3 раза',
-            'Отрефакторил модули — новые фичи добавлялись в 2 раза быстрее',
-            'Интегрировал аналитику просмотра авто, что увеличило уровень продаж',
-          ],
-        },
-        {
-          projectId: 'agat-crm',
-          points: [
-            'Реализовал внутреннее приложение для автоматизации тест-драйвов с нуля',
-            'Спроектировал архитектуру и интегрировал логирование ошибок и сбоев',
-          ],
-        },
+        { projectId: 'gandiva' },
+        { projectId: 'agat-rf' },
+        // { projectId: 'agat-crm' },
       ],
     },
     alpa: {
       company: 'АЛЬПА',
       achievements: [
-        {
-          projectId: 'penta-iot',
-          points: [
-            'Спроектировал архитектуру и реализовал приложение для управления IoT-устройствами с нуля',
-            'Собрал pixel-perfect UI и интегрировал Face ID / Touch ID',
-            'Реализовал secure storage и работу с IoT API / realtime-событиями',
-          ],
-        },
+        { projectId: 'penta-iot' },
       ],
     },
   },
@@ -351,43 +323,15 @@ export const experienceCopy: Record<Locale, Record<string, ExperienceCopy>> = {
     agat: {
       company: 'AGAT Group',
       achievements: [
-        {
-          projectId: 'gandiva',
-          points: [
-            'Designed and shipped the app from scratch: architecture, modules, CI/CD, and code style',
-            'Tech-led the mobile track: decomposition, code review, mentoring',
-            'Introduced an AI-assisted review pipeline — code-review time dropped by more than 60%',
-            'Implemented OAuth 2.0/OIDC, deep links, push, crash reporting, and centralized logging',
-          ],
-        },
-        {
-          projectId: 'agat-rf',
-          points: [
-            'Optimized network requests and made the app 3× faster',
-            'Refactored modules — new features shipped 2× faster',
-            'Integrated vehicle-view analytics, which increased sales',
-          ],
-        },
-        {
-          projectId: 'agat-crm',
-          points: [
-            'Built an internal app to automate test drives from scratch',
-            'Designed the architecture and integrated error/crash logging',
-          ],
-        },
+        { projectId: 'gandiva' },
+        { projectId: 'agat-rf' },
+        // { projectId: 'agat-crm' },
       ],
     },
     alpa: {
       company: 'ALPA',
       achievements: [
-        {
-          projectId: 'penta-iot',
-          points: [
-            'Designed the architecture and built an IoT device management app from scratch',
-            'Shipped pixel-perfect UI and integrated Face ID / Touch ID',
-            'Implemented secure storage and IoT API / realtime events',
-          ],
-        },
+        { projectId: 'penta-iot' },
       ],
     },
   },

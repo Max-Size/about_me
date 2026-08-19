@@ -60,7 +60,6 @@ export interface Project {
 export interface ExperienceAchievement {
   projectId: string;
   projectTitle: string;
-  points: string[];
 }
 
 export interface Experience {
@@ -157,54 +156,6 @@ const projectMeta: ProjectMeta[] = [
     ],
   },
   {
-    id: "tutoroll",
-    icon: "/projects/tutoroll/tutoroll_logo.svg",
-    cover: "/projects/tutoroll/tutoroll_cover.png",
-    images: [
-      "/projects/tutoroll/01_auth.jpg",
-      "/projects/tutoroll/02_register.jpg",
-      "/projects/tutoroll/03_login.jpg",
-      "/projects/tutoroll/04_profile.jpg",
-    ],
-    chips: [
-      "Frontend",
-      "Backend",
-      "Figma",
-      "Solo",
-    ],
-    status: "development",
-    technologies: [
-      "Figma",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "TanStack Query",
-      "Axios",
-      "MSW",
-      "FastAPI",
-      "Python",
-      "SQLAlchemy",
-      "PostgreSQL",
-      "JWT",
-      "MinIO",
-      "Docker",
-      "Pydantic",
-    ],
-    links: [
-      {
-        kind: "github",
-        url: "https://github.com/tutoroll/frontend",
-        label: "GitHub · frontend",
-      },
-      {
-        kind: "github",
-        url: "https://github.com/tutoroll/backend",
-        label: "GitHub · backend",
-      },
-    ],
-  },
-  {
     id: "more-than-wrap",
     icon: "/projects/more_than_wrap/more_than_wrap_logo.svg",
     cover: "/projects/more_than_wrap/more_than_wrap_cover.png",
@@ -263,6 +214,54 @@ const projectMeta: ProjectMeta[] = [
       {
         kind: "rustore",
         url: "https://www.rustore.ru/catalog/app/com.agatgroup.agatclient",
+      },
+    ],
+  },
+  {
+    id: "tutoroll",
+    icon: "/projects/tutoroll/tutoroll_logo.svg",
+    cover: "/projects/tutoroll/tutoroll_cover.png",
+    images: [
+      "/projects/tutoroll/01_auth.jpg",
+      "/projects/tutoroll/02_register.jpg",
+      "/projects/tutoroll/03_login.jpg",
+      "/projects/tutoroll/04_profile.jpg",
+    ],
+    chips: [
+      "Frontend",
+      "Backend",
+      "Figma",
+      "Solo",
+    ],
+    status: "development",
+    technologies: [
+      "Figma",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Axios",
+      "MSW",
+      "FastAPI",
+      "Python",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "JWT",
+      "MinIO",
+      "Docker",
+      "Pydantic",
+    ],
+    links: [
+      {
+        kind: "github",
+        url: "https://github.com/tutoroll/frontend",
+        label: "GitHub · frontend",
+      },
+      {
+        kind: "github",
+        url: "https://github.com/tutoroll/backend",
+        label: "GitHub · backend",
       },
     ],
   },
@@ -327,29 +326,29 @@ const projectMeta: ProjectMeta[] = [
       { kind: "hsediploma", url: "https://www.hse.ru/edu/vkr/1051636706" },
     ],
   },
-  {
-    id: "agat-crm",
-    icon: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop",
-    cover:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=750&fit=crop",
-    images: [
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=1600&fit=crop",
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=1600&fit=crop",
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=1600&fit=crop",
-    ],
-    chips: ["Mobile", "Android", "iOS", "Flutter", "Solo"],
-    status: "active",
-    technologies: [
-      "Flutter",
-      "Clean Architecture",
-      "BLoC",
-      "Provider",
-      "Dio",
-      "Retrofit",
-      "rxdart",
-      "REST API",
-    ],
-  },
+  // {
+  //   id: "agat-crm",
+  //   icon: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop",
+  //   cover:
+  //     "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=750&fit=crop",
+  //   images: [
+  //     "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=1600&fit=crop",
+  //     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=1600&fit=crop",
+  //     "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=1600&fit=crop",
+  //   ],
+  //   chips: ["Mobile", "Android", "iOS", "Flutter", "Solo"],
+  //   status: "active",
+  //   technologies: [
+  //     "Flutter",
+  //     "Clean Architecture",
+  //     "BLoC",
+  //     "Provider",
+  //     "Dio",
+  //     "Retrofit",
+  //     "rxdart",
+  //     "REST API",
+  //   ],
+  // },
 ];
 
 const experienceMeta = [
