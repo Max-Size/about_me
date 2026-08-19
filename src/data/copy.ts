@@ -137,19 +137,19 @@ export const projectCopy: Record<Locale, Record<string, ProjectCopy>> = {
     'more-than-wrap': {
       title: 'more_than_wrap',
       shortDescription:
-        'Flutter-пакет: Wrap с лимитом строк и настоящим виджетом «+N more».',
-      fullDescription: `more_than_wrap — open-source Flutter-пакет на pub.dev. Виджет LimitedWrap ограничивает число строк (maxLines) и вставляет реальный overflow-child в конец последней строки: чип, кнопку или любой другой виджет.
+        'Wrap с лимитом строк и виджетом-билдером по количеству неубравшихся элементов',
+      fullDescription: `more_than_wrap — open-source Flutter-пакет на pub.dev. Виджет LimitedWrap ограничивает число строк (maxLines) и позволяет создать любой виджет, который построится по количеству элементов, которым не хватило места с учетом всех ограничений.
 
-Это не обёртка над Wrap, а RenderObjectWidget: дети инфлейтятся во время layout, как в slivers. Непоместившиеся элементы не монтируются в дерево (в .builder они даже не создаются). Overflow-виджет собирается в том же проходе layout, поэтому первый кадр уже с корректным +N — без флеша и прыжка.
+Это не очередная обертка над Wrap, а собственные Element и RenderObject, позволяющие отрисовать за один проход layout. Непоместившиеся элементы не монтируются в дерево (в .builder они даже не создаются). Overflow-виджет собирается в том же проходе layout, поэтому первый кадр уже с корректным +N - без визуальных артефактов.
 
 Если индикатор не влезает в остаток строки, прячутся ещё дети, пока он не встанет. Совместим с packing Flutter Wrap: spacing, alignment, RTL.`,
       role: 'Author / Flutter',
-      highlight: 'RenderObject: +N без флеша на первом кадре',
+      highlight: 'Низкоуровневый подход с реализицей Element и RenderObject',
       achievements: [
         'Опубликовал пакет на pub.dev: LimitedWrap с maxLines и overflow-слотом',
-        'Реализовал кастомный RenderObject: инфлейт детей во время layout, как в slivers',
+        'Реализовал кастомный RenderObject, который позволяет на этапе layout узнать размеры всех детей и эффективно построить интерфейс',
         'Overflow-виджет строится в том же performLayout — корректный +N уже на первом кадре',
-        'Скрытые дети не монтируются; LimitedWrap.builder не создаёт элементы за видимым префиксом',
+        'Создание виджетов on-demand: скрытые дети не монтируются; LimitedWrap.builder не создаёт элементы за видимым префиксом',
         'Индикатор подгоняется под ширину: лишние дети прячутся, пока +N не влезет',
       ],
     },

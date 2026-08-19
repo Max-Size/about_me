@@ -77,7 +77,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           />
           <h3 className="font-display text-[15px] font-bold">{project.title}</h3>
           <span className="font-mono ml-auto whitespace-nowrap text-[10px] text-accent">
-            {project.chips.includes('Solo dev') ? 'solo' : 'team'}
+            {project.chips.includes('Solo') ? 'solo' : 'team'}
           </span>
         </div>
         <p className="text-[13px] leading-relaxed text-ink-muted">{project.shortDescription}</p>

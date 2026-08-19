@@ -20,20 +20,20 @@ export const ui = {
       en: 'EN',
     },
     hero: {
-      titleLead: 'Строю ',
+      titleLead: 'Создаю',
       titleAccent: 'продукты',
       titleTail: ',',
       titleLine2: 'не только код.',
       subtitle:
-        'Мобильные приложения, веб-сервисы и бэкенд с нуля — от архитектуры до релиза в сторы. Думаю метриками и юнит-экономикой.',
+        'Мобильные приложения, веб-сервисы и бэкенд с нуля — от архитектуры до успешного релиза',
       viewProjects: 'Смотреть проекты',
       contact: 'Связаться',
       openToWork: 'open to work',
       drag: 'потяни',
       statYears: 'коммерческой разработки',
-      statReview: 'времени code review после AI-pipeline',
-      statSpeed: 'ускорение приложения АГАТ.РФ',
-      statShipped: 'проекта доведены до продакшена',
+      statEstimate: 'задач реализованы в срок',
+      statSpeed: 'скорость разработки благодаря внедрению ИИ-агентов',
+      statShipped: 'проектов доведено до продакшена',
     },
     projects: {
       title: 'Проекты',
@@ -74,6 +74,7 @@ export const ui = {
     },
     links: {
       web: 'Сайт',
+      hsediploma: 'Реестр дипломов ВШЭ',
     },
     footer: {
       note: 'bento + metaballs — без единой библиотеки',
@@ -98,19 +99,19 @@ export const ui = {
       en: 'EN',
     },
     hero: {
-      titleLead: 'I build ',
+      titleLead: 'I create',
       titleAccent: 'products',
       titleTail: ',',
       titleLine2: 'not just code.',
       subtitle:
-        'Mobile apps, web services, and backends from scratch — from architecture to store release. I think in metrics and unit economics.',
+        'Mobile apps, web services, and backends from scratch — from architecture to succesful release',
       viewProjects: 'View projects',
       contact: 'Get in touch',
       openToWork: 'open to work',
       drag: 'drag',
       statYears: 'of commercial development',
-      statReview: 'code-review time after the AI pipeline',
-      statSpeed: 'faster AGAT.RF app',
+      statEstimate: 'tasks completed on time',
+      statSpeed: 'developement speed due to AI-agents integration',
       statShipped: 'projects shipped to production',
     },
     projects: {
@@ -152,6 +153,7 @@ export const ui = {
     },
     links: {
       web: 'Website',
+      hsediploma: 'HSE Diploma Registry',
     },
     footer: {
       note: 'bento + metaballs — no extra libraries',
