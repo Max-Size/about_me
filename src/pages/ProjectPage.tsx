@@ -4,6 +4,7 @@ import { getProjectById } from '../data/portfolio'
 import { Chip } from '../components/Chip'
 import { ImageLightbox } from '../components/ImageLightbox'
 import { ProjectLinks } from '../components/ProjectLinks'
+import { ProjectStatusBadge } from '../components/ProjectStatusBadge'
 import { useLocale } from '../i18n/context'
 
 export function ProjectPage() {
@@ -46,7 +47,10 @@ export function ProjectPage() {
               className="h-[58px] w-[58px] shrink-0 rounded-2xl border border-border-strong bg-surface-elevated object-cover"
             />
             <div className="min-w-0">
-              <h1 className="font-display text-xl font-black sm:text-[26px]">{project.title}</h1>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h1 className="font-display text-xl font-black sm:text-[26px]">{project.title}</h1>
+                <ProjectStatusBadge status={project.status} className="text-[11px]" />
+              </div>
               <p className="font-mono mt-1 text-[11px] text-accent">{project.role.toLowerCase()}</p>
             </div>
           </div>

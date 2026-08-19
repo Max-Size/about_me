@@ -25,6 +25,8 @@ export type ProjectChip =
   | "Diploma"
   | "IoT";
 
+export type ProjectStatus = "active" | "development" | "retired";
+
 export type ProjectLinkKind =
   | "appstore"
   | "googleplay"
@@ -55,6 +57,7 @@ export interface Project {
   chips: ProjectChip[];
   technologies: string[];
   achievements: string[];
+  status: ProjectStatus;
   links?: ProjectLink[];
 }
 
@@ -110,6 +113,7 @@ interface ProjectMeta {
   images: string[];
   chips: ProjectChip[];
   technologies: string[];
+  status: ProjectStatus;
   links?: ProjectLink[];
 }
 
@@ -127,6 +131,7 @@ const projectMeta: ProjectMeta[] = [
       "/projects/gandiva/screenshoot_6.jpg",
     ],
     chips: ["Mobile", "iOS", "Android", "Flutter", "Team"],
+    status: "active",
     technologies: [
       "Flutter",
       "Clean Architecture",
@@ -164,6 +169,7 @@ const projectMeta: ProjectMeta[] = [
       "/projects/more_than_wrap/more_than_wrap_example.png",
     ],
     chips: ["Open Source", "Flutter", "Solo"],
+    status: "active",
     technologies: [
       "Flutter",
       "Dart",
@@ -182,14 +188,17 @@ const projectMeta: ProjectMeta[] = [
     icon: "/projects/agat_rf/agat_rf_logo.jpg",
     cover: "/projects/agat_rf/agat_rf_cover.jpg",
     images: [
-      "/projects/gandiva/screenshoot_1.jpg",
-      "/projects/gandiva/screenshoot_2.jpg",
-      "/projects/gandiva/screenshoot_3.jpg",
-      "/projects/gandiva/screenshoot_4.jpg",
-      "/projects/gandiva/screenshoot_5.jpg",
-      "/projects/gandiva/screenshoot_6.jpg",
+      "/projects/agat_rf/agat_rf_01_screen.webp",
+      "/projects/agat_rf/agat_rf_02_screen.webp",
+      "/projects/agat_rf/agat_rf_03_screen.webp",
+      "/projects/agat_rf/agat_rf_04_screen.webp",
+      "/projects/agat_rf/agat_rf_05_screen.webp",
+      "/projects/agat_rf/agat_rf_06_screen.webp",
+      "/projects/agat_rf/agat_rf_07_screen.webp",
+      "/projects/agat_rf/agat_rf_08_screen.webp",
     ],
     chips: ["Mobile", "iOS", "Android", "Flutter", "Team"],
+    status: "active",
     technologies: [
       "Flutter",
       "Clean Architecture",
@@ -223,6 +232,7 @@ const projectMeta: ProjectMeta[] = [
       "/projects/penta/03_penta_screen.jpg",
     ],
     chips: ["Mobile", "iOS", "Android", "Flutter", "IoT", "Solo"],
+    status: "retired",
     technologies: [
       "Flutter",
       "Dart",
@@ -252,6 +262,7 @@ const projectMeta: ProjectMeta[] = [
       "/projects/random_walk/07_settings.jpg",
     ],
     chips: ["Diploma", "Mobile", "iOS", "Android", "PWA", "Flutter", "Team"],
+    status: "retired",
     technologies: [
       "Flutter",
       "Dart",
@@ -283,6 +294,7 @@ const projectMeta: ProjectMeta[] = [
       "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=1600&fit=crop",
     ],
     chips: ["Mobile", "Android", "iOS", "Flutter", "Solo"],
+    status: "active",
     technologies: [
       "Flutter",
       "Clean Architecture",

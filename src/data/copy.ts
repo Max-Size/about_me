@@ -131,7 +131,7 @@ export const projectCopy: Record<Locale, Record<string, ProjectCopy>> = {
         'Подключил MapLibre GL / MapTiler и DaData: выбор точки, адрес, маршрут во внешних картах',
         'Реализовал realtime-чат на WebSocket с приглашениями на прогулку',
         'Настроил FCM: уведомления в любом состоянии приложения и deep-link в нужный экран',
-        'Спроектировал кэш изображений с одноразовыми ссылками: Drift + disk cache',
+        'Спроектировал кэш изображений: Drift + disk cache',
       ],
     },
     'more-than-wrap': {

@@ -16,6 +16,9 @@
   --color-accent-2: var(--accent-2);
   --color-accent-soft: var(--accent-soft);
   --color-accent-ink: var(--accent-ink);
+  --color-status-active: var(--status-active);
+  --color-status-dev: var(--status-dev);
+  --color-status-retired: var(--status-retired);
 
   --animate-caret: caret-blink 1s step-end infinite;
 }
@@ -39,6 +42,10 @@
   --accent-soft: rgba(255, 177, 72, 0.12);
   /* цвет текста поверх янтарных заливок */
   --accent-ink: #1a1206;
+
+  --status-active: #5dba6a;
+  --status-dev: #ffb148;
+  --status-retired: #7a7368;
 }
 
 * {

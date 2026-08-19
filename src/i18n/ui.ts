@@ -40,6 +40,11 @@ export const ui = {
       hint: 'клик по карточке — полный кейс',
       featured: 'флагманский кейс',
       openCase: 'открыть кейс →',
+      status: {
+        active: 'активен',
+        development: 'в работе',
+        retired: 'архив',
+      },
     },
     about: {
       title: 'О себе',
@@ -119,6 +124,11 @@ export const ui = {
       hint: 'click a card for the full case',
       featured: 'flagship case',
       openCase: 'open case →',
+      status: {
+        active: 'live',
+        development: 'in progress',
+        retired: 'archived',
+      },
     },
     about: {
       title: 'About',
