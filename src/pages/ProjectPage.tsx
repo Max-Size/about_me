@@ -66,31 +66,32 @@ export function ProjectPage() {
         </div>
       </header>
 
-      {/* изображения */}
-      <section className="cell mt-3.5 p-7 sm:p-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">{t.projectPage.images}</h2>
-        <div className="-mx-2 mt-4 flex gap-3 overflow-x-auto px-2 pb-2">
-          {project.images.map((src, index) => (
-            <button
-              key={src}
-              type="button"
-              onClick={() => setLightboxIndex(index)}
-              className="group shrink-0 overflow-hidden rounded-xl border border-border transition hover:border-border-strong focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            >
-              <img
-                src={src}
-                alt={`${t.projectPage.screenshotAlt} ${project.title} ${index + 1}`}
-                loading="lazy"
-                decoding="async"
-                className="h-64 w-36 object-cover transition duration-300 group-hover:scale-105 sm:h-72 sm:w-40"
-              />
-            </button>
-          ))}
-        </div>
-        <p className="font-mono mt-2 text-[10.5px] text-ink-dim">
-          {t.projectPage.clickToExpand}
-        </p>
-      </section>
+      {project.images.length > 0 && (
+        <section className="cell mt-3.5 p-7 sm:p-8">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">{t.projectPage.images}</h2>
+          <div className="-mx-2 mt-4 flex gap-3 overflow-x-auto px-2 pb-2">
+            {project.images.map((src, index) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => setLightboxIndex(index)}
+                className="group shrink-0 overflow-hidden rounded-xl border border-border transition hover:border-border-strong focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                <img
+                  src={src}
+                  alt={`${t.projectPage.screenshotAlt} ${project.title} ${index + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-44 w-auto object-cover transition duration-300 group-hover:scale-105 sm:h-52"
+                />
+              </button>
+            ))}
+          </div>
+          <p className="font-mono mt-2 text-[10.5px] text-ink-dim">
+            {t.projectPage.clickToExpand}
+          </p>
+        </section>
+      )}
 
       <div className="mt-3.5 grid gap-3.5 lg:grid-cols-[1.4fr_1fr]">
         {/* описание + достижения */}

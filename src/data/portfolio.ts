@@ -16,11 +16,7 @@ export type ProjectChip =
   | "Solo"
   | "Team"
   | "Flutter"
-  | "React"
-  | "Python"
-  | "FastAPI"
-  | "PostgreSQL"
-  | "Clickhouse"
+  | "Figma"  
   | "PWA"
   | "Diploma"
   | "IoT";
@@ -157,6 +153,54 @@ const projectMeta: ProjectMeta[] = [
       {
         kind: "rustore",
         url: "https://www.rustore.ru/catalog/app/com.proton.gandiva2",
+      },
+    ],
+  },
+  {
+    id: "tutoroll",
+    icon: "/projects/tutoroll/tutoroll_logo.svg",
+    cover: "/projects/tutoroll/tutoroll_cover.png",
+    images: [
+      "/projects/tutoroll/01_auth.jpg",
+      "/projects/tutoroll/02_register.jpg",
+      "/projects/tutoroll/03_login.jpg",
+      "/projects/tutoroll/04_profile.jpg",
+    ],
+    chips: [
+      "Frontend",
+      "Backend",
+      "Figma",
+      "Solo",
+    ],
+    status: "development",
+    technologies: [
+      "Figma",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Axios",
+      "MSW",
+      "FastAPI",
+      "Python",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "JWT",
+      "MinIO",
+      "Docker",
+      "Pydantic",
+    ],
+    links: [
+      {
+        kind: "github",
+        url: "https://github.com/tutoroll/frontend",
+        label: "GitHub · frontend",
+      },
+      {
+        kind: "github",
+        url: "https://github.com/tutoroll/backend",
+        label: "GitHub · backend",
       },
     ],
   },

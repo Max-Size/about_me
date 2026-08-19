@@ -66,6 +66,25 @@ export const projectCopy: Record<Locale, Record<string, ProjectCopy>> = {
         'Интегрировал crash reporting, push-уведомления, deep linking и централизованное логирование',
       ],
     },
+    tutoroll: {
+      title: 'Tutoroll',
+      shortDescription:
+        'Платформа для репетиторов и учеников: поиск преподавателей, домашние задания и прогресс.',
+      fullDescription: `Tutoroll — веб-платформа, которая связывает репетиторов и учеников: поиск преподавателя, домашние задания и отслеживание прогресса.
+
+Продукт веду соло как fullstack: сам собрал дизайн в Figma и реализую и клиент, и сервер. Фронтенд — Next.js / React со структурой по фичам, cookie-based авторизация и TanStack Query. Бэкенд — FastAPI, PostgreSQL, JWT в HttpOnly-cookies, аватары в S3-compatible хранилище (MinIO) и локальный стек на Docker Compose.
+
+Сейчас в активной разработке: заложены аутентификация, профиль и инфраструктура, поверх которых собираются продуктовые сценарии.`,
+      role: 'Fullstack-разработчик',
+      highlight: 'Дизайн в Figma · fullstack соло',
+      achievements: [
+        'Спроектировал продукт и собрал визуальный язык в Figma: логотип, обложка и UI',
+        'Реализую фронтенд на Next.js: auth, app shell, интеграция с API и MSW-моки для локальной разработки',
+        'Реализую бэкенд на FastAPI: регистрация и логин, JWT cookies, refresh/logout, профиль и загрузка аватаров',
+        'Поднял инфраструктуру для разработки: PostgreSQL, MinIO и Docker Compose',
+        'Связал клиент и сервер cookie-based auth с CORS под локальный фронтенд',
+      ],
+    },
     'agat-rf': {
       title: 'АГАТ.РФ',
       shortDescription:
@@ -173,6 +192,25 @@ I introduced an AI-assisted review pipeline and AI agents into the team workflow
         'Introduced an AI-assisted review pipeline and cut code-review time by more than 60%',
         'Implemented OAuth 2.0/OIDC with deep links and a secure token flow',
         'Integrated crash reporting, push notifications, deep linking, and centralized logging',
+      ],
+    },
+    tutoroll: {
+      title: 'Tutoroll',
+      shortDescription:
+        'A platform for tutors and students: find a teacher, homework, and progress tracking.',
+      fullDescription: `Tutoroll is a web platform that connects tutors and students: teacher search, homework, and progress tracking.
+
+I build it solo as a fullstack: I designed it in Figma and implement both the client and the server. Frontend is Next.js / React with a feature-sliced structure, cookie-based auth, and TanStack Query. Backend is FastAPI, PostgreSQL, JWTs in HttpOnly cookies, avatars in S3-compatible storage (MinIO), and a local stack on Docker Compose.
+
+It is in active development: auth, profile, and infrastructure are in place, and product flows are being built on top.`,
+      role: 'Fullstack developer',
+      highlight: 'Figma design · fullstack, solo',
+      achievements: [
+        'Designed the product and visual language in Figma: logo, cover, and UI',
+        'Building the Next.js frontend: auth, app shell, API integration, and MSW mocks for local development',
+        'Building the FastAPI backend: registration and login, JWT cookies, refresh/logout, profile, and avatar upload',
+        'Set up the local stack: PostgreSQL, MinIO, and Docker Compose',
+        'Wired cookie-based auth between client and server with CORS for the local frontend',
       ],
     },
     'agat-rf': {
