@@ -109,14 +109,14 @@ export const ui = {
       titleTail: ',',
       titleLine2: 'not just code.',
       subtitle:
-        'Mobile apps, web services, and backends from scratch — from architecture to succesful release',
+        'Mobile apps, web services, and backends from scratch — from architecture to successful release',
       viewProjects: 'View projects',
       contact: 'Get in touch',
       openToWork: 'open to work',
       drag: 'drag',
       statYears: 'of commercial development',
       statEstimate: 'tasks completed on time',
-      statSpeed: 'developement speed due to AI-agents integration',
+      statSpeed: 'development speed thanks to AI agent integration',
       statShipped: 'projects shipped to production',
     },
     projects: {

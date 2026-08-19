@@ -239,25 +239,25 @@ Email one-time-code and Google auth, tokens in encrypted storage with automatic 
         'Connected MapLibre GL / MapTiler and DaData: pick a point, address, route in external maps',
         'Built a realtime WebSocket chat with walk invitations',
         'Set up FCM: notifications in any app state and deep-links into the right screen',
-        'Designed an image cache for one-time URLs: Drift + disk cache',
+        'Designed an image cache: Drift + disk cache',
       ],
     },
     'more-than-wrap': {
       title: 'more_than_wrap',
       shortDescription:
-        'Flutter package: Wrap with a line limit and a real “+N more” widget.',
-      fullDescription: `more_than_wrap is an open-source Flutter package on pub.dev. LimitedWrap caps the number of lines (maxLines) and inserts a real overflow child at the end of the last line: a chip, a button, or any other widget.
+        'A Wrap with a line limit and a builder widget based on how many items did not fit',
+      fullDescription: `more_than_wrap is an open-source Flutter package on pub.dev. LimitedWrap caps the number of lines (maxLines) and lets you build any widget from the count of items that did not fit, taking all constraints into account.
 
-This is not a Wrap wrapper — it is a RenderObjectWidget: children inflate during layout, like slivers. Overflowing children never mount (with .builder they are not even created). The overflow widget is built in the same layout pass, so the first frame already has the correct +N — no flash or jump.
+This is not just another Wrap wrapper — it is a custom Element and RenderObject that paint in a single layout pass. Overflowing children never mount (with .builder they are not even created). The overflow widget is built in the same layout pass, so the first frame already has the correct +N — no visual artifacts.
 
 If the indicator does not fit the remaining width, more children are hidden until it does. Compatible with Flutter Wrap packing: spacing, alignment, RTL.`,
       role: 'Author / Flutter',
-      highlight: 'RenderObject: +N with no first-frame flash',
+      highlight: 'Low-level approach with a custom Element and RenderObject',
       achievements: [
         'Published the package on pub.dev: LimitedWrap with maxLines and an overflow slot',
-        'Implemented a custom RenderObject: inflate children during layout, like slivers',
+        'Implemented a custom RenderObject that measures all children during layout and builds the UI efficiently',
         'Overflow widget is built in the same performLayout — correct +N on the first frame',
-        'Hidden children never mount; LimitedWrap.builder does not create items past the visible prefix',
+        'On-demand widget creation: hidden children never mount; LimitedWrap.builder does not create items past the visible prefix',
         'The indicator fits the remaining width: extra children hide until +N fits',
       ],
     },
