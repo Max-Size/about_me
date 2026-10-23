@@ -443,8 +443,8 @@ const sharedProfile = {
   contacts: {
     telegram: "https://t.me/maxs1zen",
     gmail: "mailto:maximuhkass14@gmail.com",
-    hh: "https://hh.ru/resume/example",
-    linkedin: "https://linkedin.com/in/example",
+    hh: "https://hh.ru/resume/5a2e1782ff0bbd43e40039ed1f6f45674b6771?from=share_ios",
+    linkedin: "https://www.linkedin.com/in/max-seleznev-56ba05422/",
   },
 };
 
