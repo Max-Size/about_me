@@ -276,6 +276,9 @@ const projectMeta: ProjectMeta[] = [
     ],
     chips: ["Frontend", "Backend", "Solo"],
     status: "development",
+    links: [
+      { kind: "github", url: "https://github.com/Max-Size/test_generator" },
+    ],
     technologies: [
       "Python",
       "FastAPI",
