@@ -85,6 +85,24 @@ export const projectCopy: Record<Locale, Record<string, ProjectCopy>> = {
         'Связал клиент и сервер cookie-based auth с CORS под локальный фронтенд',
       ],
     },
+    'test-generator': {
+      title: 'Генератор тестов',
+      shortDescription:
+        'Сервис, который по загруженным конспектам и учебным материалам генерирует тест с вопросами и ответами.',
+      fullDescription: `Генератор тестов — веб-сервис: загружаешь документы (pdf, docx, txt, md), выбираешь тип материала, количество и типы вопросов, а на выходе получаешь готовый тест.
+
+Бэкенд на FastAPI извлекает текст из документов и собирает промпт для LLM через Polza.ai (OpenAI-совместимый API). Ответ модели проходит валидацию схемы Pydantic, при кривом JSON запрос повторяется. Прогресс генерации передаётся на фронтенд в реальном времени через SSE.
+
+Фронтенд — React, TypeScript и Tailwind CSS. Сквозной e2e-прогон на Playwright проверяет каждый тестовый документ через настоящий интерфейс.`,
+      role: 'Fullstack-разработчик',
+      highlight: 'Тест по документу за пару минут',
+      achievements: [
+        'Собрал конвейер: извлечение текста из pdf/docx/txt, сборка промпта и генерация вопросов через LLM',
+        'Добавил валидацию ответа модели по схеме Pydantic с автоматическим повтором при ошибке',
+        'Реализовал прогресс генерации в реальном времени через SSE',
+        'Сделал интерфейс на React и TypeScript с настройкой типов вопросов и их количества',
+      ],
+    },
     'agat-rf': {
       title: 'АГАТ.РФ',
       shortDescription:
@@ -211,6 +229,24 @@ It is in active development: auth, profile, and infrastructure are in place, and
         'Building the FastAPI backend: registration and login, JWT cookies, refresh/logout, profile, and avatar upload',
         'Set up the local stack: PostgreSQL, MinIO, and Docker Compose',
         'Wired cookie-based auth between client and server with CORS for the local frontend',
+      ],
+    },
+    'test-generator': {
+      title: 'Test Generator',
+      shortDescription:
+        'A service that generates a quiz with questions and answers from uploaded notes and study materials.',
+      fullDescription: `Test Generator is a web service: you upload documents (pdf, docx, txt, md), choose the material type, the number of questions and question types, and get a ready-made quiz.
+
+The FastAPI backend extracts text from the documents and builds a prompt for the LLM via Polza.ai (an OpenAI-compatible API). The model's response is validated against a Pydantic schema, and the request is retried if the JSON is malformed. Generation progress is streamed to the frontend in real time via SSE.
+
+The frontend is React, TypeScript, and Tailwind CSS. An end-to-end Playwright run checks every sample document through the real interface.`,
+      role: 'Fullstack developer',
+      highlight: 'A quiz from a document in minutes',
+      achievements: [
+        'Built the pipeline: text extraction from pdf/docx/txt, prompt assembly, and question generation via LLM',
+        'Added schema validation of model output with Pydantic and automatic retry on errors',
+        'Implemented real-time generation progress over SSE',
+        'Built the React and TypeScript interface with configurable question types and counts',
       ],
     },
     'agat-rf': {
