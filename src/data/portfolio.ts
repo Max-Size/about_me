@@ -428,7 +428,6 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "AI-skills",
     skills: [
-      "Cursor",
       "ClaudeCode",
       "MCP-integration",
       "Skills",
